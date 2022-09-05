@@ -1,61 +1,76 @@
 package poo;
 
 public class Conta {
-    public Conta(int numero, String dono) {
+    public Conta(int numero){
         System.out.println("Criar objeto Conta");
         setNumero(numero);
-        setDono(dono);
-        setLimite(1500);
+        setLimite(1000);
     }
 
-    // Atributos => caracteristicas
-    private int numero;
-    private double saldo;
-    private String dono;
-    private double limite;
+    public boolean depositar(double valor){
+        setSaldo(valor);
+        return true;
+    }
 
-    // Comportamentos / Métodos => ações
-    // tipo_retorno nome_metodo(tipo_parametro nome_parametro)
-    private String info() {
-        String estado = "Número: " + numero + " // Saldo R$: " + saldo + " // Dono: " + dono + " // Limite R$: " + limite;
+    public boolean sacar(double valor){
+        if (valor <= getSaldo()+getLimite()){
+            setSaldo(-valor);
+            return true;
+        }
+        return false;
+    }
+    // comportamentos => metodos
+    // tipo_retorno nome_metodo(parametros)
+    public String info(){
+        String estado = "--------------------" +
+                        "\nNumero: " + numero + 
+                        "\nCliente: " + dono +
+                        "\nSaldo: R$ " + saldo +
+                        "\nLimite: R$ " + limite;
         return estado;
     }
-
     public int getNumero() {
         return numero;
     }
-
     private void setNumero(int numero) {
         this.numero = numero;
     }
-
     public double getSaldo() {
         return saldo;
     }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    private void setSaldo(double saldo) {
+        this.saldo += saldo;
     }
-
+   
     public String getDono() {
         return dono;
     }
-
-    private void setDono(String dono) {
+    public void setDono(String dono) {
         this.dono = dono;
     }
+    public double getLimite() {
+        return limite;
+    }
+    public void setLimite(double limite) {
+        this.limite = limite;
+    }
 
+    public boolean transferir(Conta destino, double valor){
+        if (this.sacar(valor)){
+            destino.depositar(valor);
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return info();
     }
 
-    public double getLimite() {
-        return limite;
-    }
 
-    public void setLimite(double limite) {
-        this.limite = limite;
-    }
-
+    // atributos => caracteristicas
+    private int numero;
+    private double saldo;
+    private String dono;
+    private double limite;
 }

@@ -1,13 +1,17 @@
 package exemplos_basicos;
+/**
+ * App
+ */
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        // idade ano atual
         int idade = 35;
-        int idadeAnoQueVem = idade + 1;
-
-        String nome = "João";
-
-        System.out.println(nome +" "+ idadeAnoQueVem);
-
-        System.out.print(Integer.MAX_VALUE);
+        // idade ano que vem
+        int idadeAnoQueVem = idade+1;
+        System.out.println("Proxima idade " + idadeAnoQueVem);
+        System.out.println("idade: " + idade);
+        int idCliente = 1; // idCliente pertence [1,10]
+        System.out.println(Integer.MAX_VALUE);
     }
+    
 }
